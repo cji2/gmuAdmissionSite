@@ -1,0 +1,99 @@
+﻿@model IEnumerable<EFSecurityShell.Models.Applicant>
+
+@{
+    ViewBag.Title = "Index";
+}
+@if (User.IsInRole("Admin"))
+{
+    <h3>Applicants</h3>
+    <p>
+        @using (Html.BeginForm())
+        {
+        <p>
+            Last Name or SSN: @Html.TextBox("Search") &nbsp; &nbsp;
+            <input type="submit" value="Search" />
+        </p>
+    }
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MiddleName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreateTime)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.GPA)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalScore)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.EnrollmentSemester)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EnrollmentYear)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EnrollmentDecision)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MiddleName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreateTime)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GPA)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalScore)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EnrollmentSemester)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EnrollmentYear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EnrollmentDecision)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+    else
+    {
+        <h3>Your Appllcation is submitted succcessfully!</h3>
+    }
